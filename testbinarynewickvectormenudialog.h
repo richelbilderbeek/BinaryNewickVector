@@ -1,9 +1,6 @@
 #ifndef TESTBINARYNEWICKVECTORMENUDIALOG_H
 #define TESTBINARYNEWICKVECTORMENUDIALOG_H
 
-#include <string>
-#include <vector>
-
 #include "menudialog.h"
 
 namespace ribi {
@@ -14,7 +11,6 @@ struct TestBinaryNewickVectorMenuDialog final : public MenuDialog
   TestBinaryNewickVectorMenuDialog();
   About GetAbout() const noexcept override;
   Help GetHelp() const noexcept override;
-  boost::shared_ptr<const Program> GetProgram() const noexcept override;
   std::string GetVersion() const noexcept override;
   std::vector<std::string> GetVersionHistory() const noexcept override;
 

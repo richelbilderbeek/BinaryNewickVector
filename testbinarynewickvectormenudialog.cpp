@@ -12,7 +12,6 @@
 #include <boost/lexical_cast.hpp>
 
 #include "binarynewickvector.h"
-#include "richelbilderbeekprogram.h"
 #include "trace.h"
 #include "testtimer.h"
 #pragma GCC diagnostic pop
@@ -43,11 +42,12 @@ ribi::About ribi::TestBinaryNewickVectorMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TestBinaryNewickVector",
     "GUI tool to test BinaryNewickVector",
-    "the 6th of December 2013",
+    "November 27th of 2015",
     "2010-2015",
     "http://www.richelbilderbeek.nl/ToolTestBinaryNewickVector.htm",
     GetVersion(),
-    GetVersionHistory());
+    GetVersionHistory()
+  );
   a.AddLibrary("BigInt: version 2010.04.30");
   a.AddLibrary("BinaryNewickVector: " + BinaryNewickVector::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
@@ -68,16 +68,9 @@ ribi::Help ribi::TestBinaryNewickVectorMenuDialog::GetHelp() const noexcept
   );
 }
 
-boost::shared_ptr<const ribi::Program> ribi::TestBinaryNewickVectorMenuDialog::GetProgram() const noexcept
-{
-  const boost::shared_ptr<const ribi::Program> p(new ProgramTestBinaryNewickVector);
-  assert(p);
-  return p;
-}
-
 std::string ribi::TestBinaryNewickVectorMenuDialog::GetVersion() const noexcept
 {
-  return "3.2";
+  return "4.0";
 }
 
 std::vector<std::string> ribi::TestBinaryNewickVectorMenuDialog::GetVersionHistory() const noexcept
@@ -93,7 +86,8 @@ std::vector<std::string> ribi::TestBinaryNewickVectorMenuDialog::GetVersionHisto
     "2011-02-20: Version 2.0: major revision of architecture, removed use of CLN library, renamed program to TestBinaryNewickVector",
     "2011-03-01: Version 3.0: major rewrite of algorithms",
     "2011-03-08: Version 3.1: minor rewrite of algorithms",
-    "2013-12-06: Version 3.2: conformized to ProjectRichelBilderbeek"
+    "2013-12-06: Version 3.2: conformized to ProjectRichelBilderbeek",
+    "2015-11-27: Version 4.0: moved to own GitHub"
   };
 }
 
