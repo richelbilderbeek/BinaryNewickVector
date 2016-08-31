@@ -14,3 +14,10 @@ include(../RibiClasses/CppSortedBinaryNewickVector/CppSortedBinaryNewickVector.p
 include(../TestBinaryNewickVector/TestBinaryNewickVectorDesktop.pri)
 
 SOURCES += qtmain.cpp
+
+# Thanks to Qt
+QMAKE_CXXFLAGS += -Wno-unused-variable
+
+# gcov
+QMAKE_CXXFLAGS += -fprofile-arcs -ftest-coverage
+LIBS += -lgcov
