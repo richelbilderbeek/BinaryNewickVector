@@ -29,10 +29,6 @@ private slots:
 
 private:
   Ui::QtTestBinaryNewickVectorMenuDialog *ui;
-
-  #ifndef NDEBUG
-  static void Test() noexcept;
-  #endif
 };
 
 } //~namespace ribi

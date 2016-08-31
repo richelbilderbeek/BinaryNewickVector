@@ -48,10 +48,6 @@ private slots:
   void on_button_demo_clicked();
   void OnAnyChange();
   void OnDemoTick();
-
-  #ifndef NDEBUG
-  static void Test() noexcept;
-  #endif
 };
 
 } //~namespace ribi

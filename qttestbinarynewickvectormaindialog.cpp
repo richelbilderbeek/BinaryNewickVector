@@ -57,20 +57,21 @@ ribi::QtTestBinaryNewickVectorMainDialog::QtTestBinaryNewickVectorMainDialog(QWi
   ui->setupUi(this);
   QObject::connect(
     ui->edit_newick,
-    static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),
+    SIGNAL(textChanged(QString)),
     this,
-    &ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange
+    SLOT(OnAnyChange())
   );
   QObject::connect(
     ui->edit_theta,
-    static_cast<void (QLineEdit::*)(const QString&)>(&QLineEdit::textChanged),
+    SIGNAL(textChanged(QString)),
     this,
-    &ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange
+    SLOT(OnAnyChange())
   );
   QObject::connect(
-    m_timer,&QTimer::timeout,
+    m_timer,
+    SIGNAL(timeout()),
     this,
-    &ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange
+    SLOT(OnAnyChange())
   );
 
   #ifndef NDEBUG
@@ -79,14 +80,7 @@ ribi::QtTestBinaryNewickVectorMainDialog::QtTestBinaryNewickVectorMainDialog(QWi
   setWindowTitle(windowTitle()+" (release)");
   #endif
 
-  #ifndef NDEBUG
-  //Test general Newick functions
-  Newick().Test();
-  BinaryNewickVector::Test();
-
-  #endif //~#ifndef NDEBUG
-
-  this->OnAnyChange();
+  OnAnyChange();
 }
 
 ribi::QtTestBinaryNewickVectorMainDialog::~QtTestBinaryNewickVectorMainDialog() noexcept
@@ -352,15 +346,3 @@ void ribi::QtTestBinaryNewickVectorMainDialog::on_button_calculate_clicked()
     QString("PROBABILITY: ")
     + boost::lexical_cast<std::string>(probability).c_str());
 }
-
-#ifndef NDEBUG
-void ribi::QtTestBinaryNewickVectorMainDialog::Test() noexcept
-{
-  {
-    static bool is_tested{false};
-    if (is_tested) return;
-    is_tested = true;
-  }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
-}
-#endif

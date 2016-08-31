@@ -7,8 +7,6 @@
 #include "testbinarynewickvectormenudialog.h"
 #include "qtaboutdialog.h"
 #include "qttestbinarynewickvectormaindialog.h"
-#include "testtimer.h"
-#include "trace.h"
 #include "ui_qttestbinarynewickvectormenudialog.h"
 #pragma GCC diagnostic pop
 
@@ -16,9 +14,6 @@ ribi::QtTestBinaryNewickVectorMenuDialog::QtTestBinaryNewickVectorMenuDialog(QWi
   QtHideAndShowDialog(parent),
   ui(new Ui::QtTestBinaryNewickVectorMenuDialog)
 {
-  #ifndef NDEBUG
-  Test();
-  #endif
   ui->setupUi(this);
 }
 
@@ -43,16 +38,3 @@ void ribi::QtTestBinaryNewickVectorMenuDialog::on_button_quit_clicked()
 {
   this->close();
 }
-
-#ifndef NDEBUG
-void ribi::QtTestBinaryNewickVectorMenuDialog::Test() noexcept
-{
-  {
-    static bool is_tested{false};
-    if (is_tested) return;
-    is_tested = true;
-  }
-  QtTestBinaryNewickVectorMainDialog();
-  const TestTimer test_timer(__func__,__FILE__,1.0);
-}
-#endif
