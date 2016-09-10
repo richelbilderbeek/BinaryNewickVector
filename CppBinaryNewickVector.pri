@@ -1,12 +1,8 @@
-INCLUDEPATH += \
-    ../RibiClasses/CppBinaryNewickVector
+INCLUDEPATH += ../TestBinaryNewickVector
 
 SOURCES += \
-    ../RibiClasses/CppBinaryNewickVector/binarynewickvector.cpp
+    $$PWD/binarynewickvector.cpp
 
 HEADERS  += \
-    ../RibiClasses/CppBinaryNewickVector/binarynewickvector.h
-
-OTHER_FILES += \
-    ../RibiClasses/CppBinaryNewickVector/Licence.txt
+    $$PWD/binarynewickvector.h
 
