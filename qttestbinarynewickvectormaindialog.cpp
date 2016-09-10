@@ -51,9 +51,6 @@ ribi::QtTestBinaryNewickVectorMainDialog::QtTestBinaryNewickVectorMainDialog(QWi
     ui(new Ui::QtTestBinaryNewickVectorMainDialog),
     m_timer(new QTimer)
 {
-  #ifndef NDEBUG
-  Test();
-  #endif
   ui->setupUi(this);
   QObject::connect(
     ui->edit_newick,

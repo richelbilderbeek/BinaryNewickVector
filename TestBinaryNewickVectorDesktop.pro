@@ -6,12 +6,12 @@ include(../RibiLibraries/GeneralDesktop.pri)
 
 #Specific
 include(BinaryNewickVector.pri)
+include(../Newick/Newick.pri)
 include(../RibiClasses/CppFuzzy_equal_to/CppFuzzy_equal_to.pri)
-include(../RibiClasses/CppNewick/CppNewick.pri)
 include(../RibiClasses/CppSortedBinaryNewickVector/CppSortedBinaryNewickVector.pri)
 
 #Specific
-include(../TestBinaryNewickVector/TestBinaryNewickVectorDesktop.pri)
+include(TestBinaryNewickVectorDesktop.pri)
 
 SOURCES += qtmain.cpp
 

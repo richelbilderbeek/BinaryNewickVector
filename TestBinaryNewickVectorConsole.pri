@@ -1,8 +1,8 @@
 INCLUDEPATH += \
-    ../TestBinaryNewickVector
+    ../BinaryNewickVector
 
 HEADERS += \
-    ../TestBinaryNewickVector/testbinarynewickvectormenudialog.h
+    $$PWD/testbinarynewickvectormenudialog.h
 
 SOURCES += \
-    ../TestBinaryNewickVector/testbinarynewickvectormenudialog.cpp
+    $$PWD/testbinarynewickvectormenudialog.cpp

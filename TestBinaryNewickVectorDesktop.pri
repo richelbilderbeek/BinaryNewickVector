@@ -1,18 +1,18 @@
-include(../TestBinaryNewickVector/TestBinaryNewickVectorConsole.pri)
+include(TestBinaryNewickVectorConsole.pri)
 
 FORMS += \
-    ../TestBinaryNewickVector/qttestbinarynewickvectormaindialog.ui \
-    ../TestBinaryNewickVector/qttestbinarynewickvectormenudialog.ui
+    $$PWD/qttestbinarynewickvectormaindialog.ui \
+    $$PWD/qttestbinarynewickvectormenudialog.ui
 
 RESOURCES += \
-    ../TestBinaryNewickVector/TestBinaryNewickVector.qrc
+    $$PWD/TestBinaryNewickVector.qrc
 
 HEADERS += \
-    ../TestBinaryNewickVector/qttestbinarynewickvectormaindialog.h \
-    ../TestBinaryNewickVector/qttestbinarynewickvectormenudialog.h
+    $$PWD/qttestbinarynewickvectormaindialog.h \
+    $$PWD/qttestbinarynewickvectormenudialog.h
 
 SOURCES += \
-    ../TestBinaryNewickVector/qttestbinarynewickvectormaindialog.cpp \
-    ../TestBinaryNewickVector/qttestbinarynewickvectormenudialog.cpp
+    $$PWD/qttestbinarynewickvectormaindialog.cpp \
+    $$PWD/qttestbinarynewickvectormenudialog.cpp
 
 
