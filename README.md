@@ -1,12 +1,12 @@
-# TestBinaryNewickVector
+# BinaryNewickVector
 
 [![Travis CI logo](TravisCI.png)](https://travis-ci.org)
 ![Whitespace](Whitespace.png)
 [![Codecov logo](Codecov.png)](https://www.codecov.io)
 
-[![Build Status](https://travis-ci.org/richelbilderbeek/TestBinaryNewickVector.svg?branch=master)](https://travis-ci.org/richelbilderbeek/TestBinaryNewickVector)
-[![codecov.io](https://codecov.io/github/richelbilderbeek/TestBinaryNewickVector/coverage.svg?branch=master)](https://codecov.io/github/richelbilderbeek/TestBinaryNewickVector?branch=master)
+[![Build Status](https://travis-ci.org/richelbilderbeek/BinaryNewickVector.svg?branch=master)](https://travis-ci.org/richelbilderbeek/BinaryNewickVector)
+[![codecov.io](https://codecov.io/github/richelbilderbeek/BinaryNewickVector/coverage.svg?branch=master)](https://codecov.io/github/richelbilderbeek/BinaryNewickVector?branch=master)
 
-Tool to test the C++ BinaryNewick class, using Qt.
+BinaryNewickVector class, including tests.
 
-![TestBinaryNewickVector v4.0](Screenshots/TestBinaryNewickVector_4_0.png)
+![BinaryNewickVector v4.0](Screenshots/BinaryNewickVector_4_0.png)

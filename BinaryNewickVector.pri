@@ -1,4 +1,4 @@
-INCLUDEPATH += ../TestBinaryNewickVector
+INCLUDEPATH += ../BinaryNewickVector
 
 SOURCES += \
     $$PWD/binarynewickvector.cpp
