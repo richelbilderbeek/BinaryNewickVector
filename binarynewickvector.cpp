@@ -41,7 +41,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/lexical_cast.hpp>
 
 #include "BigIntegerLibrary.hh"
-#include "testtimer.h"
 #include "newick.h"
 
 #pragma GCC diagnostic pop
@@ -444,7 +443,6 @@ void ribi::BinaryNewickVector::Test() noexcept
   {
     Newick();
   }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
   const bool verbose{false};
 
   //Check that well-formed Newicks are confirmed valid
