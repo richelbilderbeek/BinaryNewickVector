@@ -14,7 +14,7 @@ namespace ribi {
 
 class QtTestBinaryNewickVectorMenuDialog : public QtHideAndShowDialog
 {
-  Q_OBJECT
+  Q_OBJECT //!OCLINT
 
 public:
   explicit QtTestBinaryNewickVectorMenuDialog(QWidget *parent = 0);

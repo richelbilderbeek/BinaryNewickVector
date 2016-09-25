@@ -18,22 +18,20 @@
 
 ribi::TestBinaryNewickVectorMenuDialog::TestBinaryNewickVectorMenuDialog()
 {
-  #ifndef NDEBUG
-  Test();
-  #endif
+
 }
 
 int ribi::TestBinaryNewickVectorMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   const int argc = static_cast<int>(argv.size());
-  if (argc == 1)
+  if (argc > 1)
   {
     std::cout << GetHelp() << '\n';
-    return 1;
+    return 0;
   }
 
-  assert(!"TODO");
-  return 1;
+  std::cout << "TestBinaryNewickVector does not have a CLI\n";
+  return 0;
 }
 
 ribi::About ribi::TestBinaryNewickVectorMenuDialog::GetAbout() const noexcept
@@ -90,18 +88,3 @@ std::vector<std::string> ribi::TestBinaryNewickVectorMenuDialog::GetVersionHisto
     "2015-11-27: Version 4.0: moved to own GitHub"
   };
 }
-
-#ifndef NDEBUG
-void ribi::TestBinaryNewickVectorMenuDialog::Test() noexcept
-{
-  {
-    static bool is_tested{false};
-    if (is_tested) return;
-    is_tested = true;
-  }
-  {
-    BinaryNewickVector::Test();
-  }
-  const TestTimer test_timer(__func__,__FILE__,1.0);
-}
-#endif
