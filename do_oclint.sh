@@ -35,6 +35,7 @@ h_files=`ls *.h | egrep -v "^ui_.*\.h$"`
   -I../BoostGraphTutorial/BoostGraphTutorial \
   -I../StyleSheetSetter \
   -I../RibiLibraries/Apfloat \
+  -I../RibiLibraries/bigint-2010.04.30 \
   -I/usr/include/c++/5 \
   -I/usr/include/x86_64-linux-gnu/c++/5 \
   -I/usr/include/qt4 \
