@@ -61,12 +61,6 @@ struct BinaryNewickVector
   private:
   std::vector<int> m_v;
 
-  static double CalculateProbabilityInternal(
-    const BinaryNewickVector& n,
-    const double theta,
-    NewickStorage<BinaryNewickVector>& storage
-  ) noexcept;
-
   bool IsCloseBracketRight(const int pos) const noexcept;
   bool IsOpenBracketLeft(const int pos) const noexcept;
   BinaryNewickVector LoseBrackets(const int x, const int i) const noexcept;
@@ -79,16 +73,18 @@ struct BinaryNewickVector
     const double theta
   ) noexcept;
 
-  #ifndef NDEBUG
-  static void Test() noexcept;
-  #endif
-
   static bool NewickCompare(
     const std::vector<int>& lhs,
     const std::vector<int>& rhs
   ) noexcept;
 
 };
+
+double CalculateProbabilityInternal(
+  const BinaryNewickVector& n,
+  const double theta,
+  NewickStorage<BinaryNewickVector>& storage
+) noexcept;
 
 bool operator<(
   const BinaryNewickVector& lhs,
