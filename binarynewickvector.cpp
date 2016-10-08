@@ -192,12 +192,12 @@ double ribi::BinaryNewickVector::CalculateProbabilityInternal(
         return p;
       }
     }
-    catch (std::bad_alloc& e)
+    catch (std::bad_alloc&)
     {
       storage.CleanUp();
       std::cerr << "std::bad_alloc\n";
     }
-    catch (std::exception& e)
+    catch (std::exception&)
     {
       storage.CleanUp();
       std::cerr << "std::exception";
@@ -306,7 +306,10 @@ bool ribi::BinaryNewickVector::IsSimple() const noexcept
 // -> bracket_close_pos = 7
 // -> sz_loss = 4 = 7 - 3 = bracket_close_pos - bracket_open_pos
 // -> new_sz = 5
-ribi::BinaryNewickVector ribi::BinaryNewickVector::LoseBrackets(const int x, const int i) const noexcept
+ribi::BinaryNewickVector ribi::BinaryNewickVector::LoseBrackets(
+  const int x,
+  const int i
+) const noexcept
 {
   assert(i >= 0);
   assert(i < Size());
@@ -390,13 +393,11 @@ ribi::BinaryNewickVector ribi::BinaryNewickVector::TermIsNotOne(const int i) con
 //      ^      EXIT-2
 // (1,(1,1)), string_pos 7 -> (1,2)
 //        ^    EXIT-1
-// ((1,2,3),3), string_pos 3 -> (3,3) //Might be incorrect: algorithm holds for two numbers between brackets
+// ((1,2,3),3), string_pos 3 -> (3,3) //Might be incorrect: algorithm holds for two numbers between brackets //!OCLINT
 //    ^
 ribi::BinaryNewickVector ribi::BinaryNewickVector::TermIsOne(const int i) const noexcept
 {
   const int sz = m_v.size();
-
-  //assert(new_newick.empty());
   assert(i < sz);
   assert(m_v[i] == 1); //Must be a 1
 
@@ -405,24 +406,20 @@ ribi::BinaryNewickVector ribi::BinaryNewickVector::TermIsOne(const int i) const 
   const bool close_bracket_right
     = IsCloseBracketRight(i);
 
-  if (open_bracket_left == true
-    && close_bracket_right == true)
+  if (open_bracket_left && close_bracket_right)
   {
     //Find other_value
     int other_value = 0;
     //If adjecent to the left is a comma
     // and subsequently a value,
-    if (i > 0
-      && m_v[i-1]  > 0)
+    if (i > 0 && m_v[i-1]  > 0)
     {
       other_value = m_v[i-1];
     }
-    else if (i + 1 < sz
-      && m_v[i+1]  > 0)
+    else if (i + 1 < sz && m_v[i+1]  > 0)
     {
       other_value = m_v[i+1];
     }
-
     assert(other_value >= 1);
     return LoseBrackets(other_value,i);
   }
@@ -443,14 +440,11 @@ void ribi::BinaryNewickVector::Test() noexcept
   {
     Newick();
   }
-  const bool verbose{false};
-
   //Check that well-formed Newicks are confirmed valid
   {
     const auto v = Newick().CreateValidNewicks();
     for(const auto& s: v)
     {
-      if (verbose) { TRACE("I must be accepted: " + s); }
       //Check if valid newicks (as std::string) are marked as valid
       try
       {
