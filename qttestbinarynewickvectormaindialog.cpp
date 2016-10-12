@@ -34,7 +34,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 #include "qttestbinarynewickvectormaindialog.h"
-#include "testtimer.h"
 #include "testbinarynewickvectormenudialog.h"
 #include "newick.h"
 #include "newickstorage.h"

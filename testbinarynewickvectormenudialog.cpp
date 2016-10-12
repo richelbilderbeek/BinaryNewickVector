@@ -12,8 +12,6 @@
 #include <boost/lexical_cast.hpp>
 
 #include "binarynewickvector.h"
-#include "trace.h"
-#include "testtimer.h"
 #pragma GCC diagnostic pop
 
 ribi::TestBinaryNewickVectorMenuDialog::TestBinaryNewickVectorMenuDialog()
@@ -50,7 +48,6 @@ ribi::About ribi::TestBinaryNewickVectorMenuDialog::GetAbout() const noexcept
   );
   a.AddLibrary("BigInt: version 2010.04.30");
   a.AddLibrary("BinaryNewickVector: " + BinaryNewickVector::GetVersion());
-  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 
