@@ -30,7 +30,7 @@ before_script:
 script: 
   # Build and start test
   - qmake BinaryNewickVectorTest.pro
-  - make
+  - make debug
   - ./BinaryNewickVectorTest
   # Get code coverage
   - ./get_code_cov.sh
