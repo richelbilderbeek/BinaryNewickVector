@@ -27,3 +27,11 @@
 *.out
 *.app
 *.pro.user
+*.gcno
+ui_*
+moc_*
+Makefile
+qrc_*
+*.tar.gz
+oclint-0.10.3/
+oclint.log

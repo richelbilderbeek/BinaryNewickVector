@@ -28,9 +28,17 @@ before_script:
   - ./install_other_githubs.sh
 
 script: 
-  - ./build.sh
+  # Build and start test
+  - qmake BinaryNewickVectorTest.pro
+  - make
+  - ./BinaryNewickVectorTest
+  # Get code coverage
   - ./get_code_cov.sh
   - codecov
+  # Build the demo
+  - qmake TestBinaryNewickVectorDesktop.pro
+  - make
+  # OCLint
   - ./do_oclint.sh
 
 after_success: 

@@ -48,10 +48,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 ribi::BinaryNewickVector::BinaryNewickVector(const std::string& s) noexcept
   : m_v{Newick().StringToNewick(s)}
 {
-  #ifndef NDEBUG
-  Test();
-  #endif
-
   assert(Newick().IsUnaryNewick(Newick().StringToNewick(s))
       || Newick().IsBinaryNewick(Newick().StringToNewick(s)));
 
@@ -63,10 +59,6 @@ ribi::BinaryNewickVector::BinaryNewickVector(const std::string& s) noexcept
 ribi::BinaryNewickVector::BinaryNewickVector(const std::vector<int>& v) noexcept
   : m_v{v}
 {
-  #ifndef NDEBUG
-  Test();
-  #endif
-
   assert(Newick().IsUnaryNewick(m_v) || Newick().IsBinaryNewick(m_v));
   assert(m_v.empty() || Newick().IsNewick(m_v));
 }
@@ -427,101 +419,6 @@ ribi::BinaryNewickVector ribi::BinaryNewickVector::TermIsOne(const int i) const 
   //Return an empty SortedBinaryNewickVector
   return BinaryNewickVector(std::vector<int>());
 }
-
-
-#ifndef NDEBUG
-void ribi::BinaryNewickVector::Test() noexcept
-{
-  {
-    static bool is_tested{false};
-    if (is_tested) return;
-    is_tested = true;
-  }
-  {
-    Newick();
-  }
-  //Check that well-formed Newicks are confirmed valid
-  {
-    const auto v = Newick().CreateValidNewicks();
-    for(const auto& s: v)
-    {
-      //Check if valid newicks (as std::string) are marked as valid
-      try
-      {
-        Newick().CheckNewick(s);
-      }
-      catch (std::exception& e)
-      {
-        std::cerr << "(" << __FILE__ << "," << __LINE__ << ") "
-          << s << ": " << e.what() << '\n';
-      }
-      //Check if valid newicks (as std::vector) are marked as valid
-      try
-      {
-        const std::vector<int> n = Newick().StringToNewick(s);
-        Newick().CheckNewick(n);
-        assert(Newick().IsNewick(n));
-      }
-      catch (std::exception& e)
-      {
-        std::cerr << s
-          << " (converted to std::vector<int>): "
-          << e.what();
-      }
-      //Check std::string conversion (from BinaryNewickVector(std::string))
-      if ( !Newick().IsUnaryNewick(Newick().StringToNewick(s))
-        && !Newick().IsBinaryNewick(Newick().StringToNewick(s)))
-      {
-        continue;
-      }
-      try
-      {
-        BinaryNewickVector temp(s);
-        assert(s == temp.ToStr());
-      }
-      catch (std::exception& e)
-      {
-        std::cerr << s
-          << " (BinaryNewickVector from std::string): "
-          << e.what();
-      }
-      //Check std::string conversion (from BinaryNewickVector(std::vector<int>))
-      try
-      {
-        const std::vector<int> n = Newick().StringToNewick(s);
-        BinaryNewickVector temp(n);
-        assert(s == temp.ToStr());
-      }
-      catch (std::exception& e)
-      {
-        std::cerr << s
-          << " (BinaryNewickVector from std::vector<int>): "
-          << e.what();
-      }
-      assert(Newick().IsNewick(s));
-      //Check the simpler Newicks
-      {
-        const std::vector<std::vector<int> > simpler
-          = Newick().GetSimplerBinaryNewicks(
-            Newick().StringToNewick(s));
-        for(const std::vector<int> simple: simpler)
-        {
-          assert(Newick().IsNewick(simple));
-          Newick().CheckNewick(simple);
-        }
-      }
-      //Check the branches, only of binary Newicks
-      if (Newick().IsBinaryNewick(Newick().StringToNewick(s)))
-      {
-        const std::pair<std::vector<int>,std::vector<int> > b
-            = Newick().GetRootBranchesBinary(Newick().StringToNewick(s));
-        assert(Newick().IsNewick(b.first));
-        assert(Newick().IsNewick(b.second));
-      }
-    }
-  }
-}
-#endif
 
 std::string ribi::BinaryNewickVector::ToStr() const noexcept
 {
