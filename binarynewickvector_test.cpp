@@ -34,13 +34,13 @@ BOOST_AUTO_TEST_CASE(test_binary_newick_vector)
 {
   //Check that well-formed Newicks are confirmed valid
   {
-    const auto v = Newick().CreateValidNewicks();
+    const auto v = newick::CreateValidNewicks();
     for(const auto& s: v)
     {
       //Check if valid newicks (as std::string) are marked as valid
       try
       {
-        Newick().CheckNewick(s);
+        newick::CheckNewick(s);
       }
       catch (std::exception& e)
       {
@@ -50,9 +50,9 @@ BOOST_AUTO_TEST_CASE(test_binary_newick_vector)
       //Check if valid newicks (as std::vector) are marked as valid
       try
       {
-        const std::vector<int> n = Newick().StringToNewick(s);
-        Newick().CheckNewick(n);
-        BOOST_CHECK(Newick().IsNewick(n));
+        const std::vector<int> n = newick::StringToNewick(s);
+        newick::CheckNewick(n);
+        BOOST_CHECK(newick::IsNewick(n));
       }
       catch (std::exception& e)
       {
@@ -61,8 +61,8 @@ BOOST_AUTO_TEST_CASE(test_binary_newick_vector)
           << e.what();
       }
       //Check std::string conversion (from BinaryNewickVector(std::string))
-      if ( !Newick().IsUnaryNewick(Newick().StringToNewick(s))
-        && !Newick().IsBinaryNewick(Newick().StringToNewick(s)))
+      if ( !newick::IsUnaryNewick(newick::StringToNewick(s))
+        && !newick::IsBinaryNewick(newick::StringToNewick(s)))
       {
         continue;
       }
@@ -80,7 +80,7 @@ BOOST_AUTO_TEST_CASE(test_binary_newick_vector)
       //Check std::string conversion (from BinaryNewickVector(std::vector<int>))
       try
       {
-        const std::vector<int> n = Newick().StringToNewick(s);
+        const std::vector<int> n = newick::StringToNewick(s);
         BinaryNewickVector temp(n);
         BOOST_CHECK(s == temp.ToStr());
       }
@@ -90,25 +90,25 @@ BOOST_AUTO_TEST_CASE(test_binary_newick_vector)
           << " (BinaryNewickVector from std::vector<int>): "
           << e.what();
       }
-      BOOST_CHECK(Newick().IsNewick(s));
+      BOOST_CHECK(newick::IsNewick(s));
       //Check the simpler Newicks
       {
         const std::vector<std::vector<int> > simpler
-          = Newick().GetSimplerBinaryNewicks(
-            Newick().StringToNewick(s));
+          = newick::GetSimplerBinaryNewicks(
+            newick::StringToNewick(s));
         for(const std::vector<int> simple: simpler)
         {
-          BOOST_CHECK(Newick().IsNewick(simple));
-          Newick().CheckNewick(simple);
+          BOOST_CHECK(newick::IsNewick(simple));
+          newick::CheckNewick(simple);
         }
       }
       //Check the branches, only of binary Newicks
-      if (Newick().IsBinaryNewick(Newick().StringToNewick(s)))
+      if (newick::IsBinaryNewick(newick::StringToNewick(s)))
       {
         const std::pair<std::vector<int>,std::vector<int> > b
-            = Newick().GetRootBranchesBinary(Newick().StringToNewick(s));
-        BOOST_CHECK(Newick().IsNewick(b.first));
-        BOOST_CHECK(Newick().IsNewick(b.second));
+            = newick::GetRootBranchesBinary(newick::StringToNewick(s));
+        BOOST_CHECK(newick::IsNewick(b.first));
+        BOOST_CHECK(newick::IsNewick(b.second));
       }
     }
   }

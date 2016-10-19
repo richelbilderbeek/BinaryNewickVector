@@ -97,13 +97,13 @@ void ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange()
   ui->edit_text->clear();
 
   const std::string s = ui->edit_newick->text().toStdString();
-  if (!Newick().IsNewick(s))
+  if (!newick::IsNewick(s))
   {
     ui->edit_text->appendPlainText("Valid Newick: No");
     //No Newick, why not?
     try
     {
-      Newick().CheckNewick(s);
+      newick::CheckNewick(s);
     }
     catch (std::exception& e)
     {
@@ -113,7 +113,7 @@ void ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange()
     }
     return;
   }
-  assert(Newick().IsNewick(s));
+  assert(newick::IsNewick(s));
   ui->edit_text->appendPlainText("Valid Newick: Yes");
   try
   {
@@ -130,8 +130,8 @@ void ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange()
   //Check the std::vector Newick
   try
   {
-    const std::vector<int> v = Newick().StringToNewick(s);
-    Newick().CheckNewick(v);
+    const std::vector<int> v = newick::StringToNewick(s);
+    newick::CheckNewick(v);
   }
   catch (std::exception& e)
   {
@@ -145,17 +145,17 @@ void ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange()
   //Calculate the complexity
   {
     const BinaryNewickVector n(s);
-    const BigInteger c = Newick().CalcComplexity(n.Peek());
+    const BigInteger c = newick::CalcComplexity(n.Peek());
     ui->edit_text->appendPlainText("Newick complexity: "
       + QString(bigIntegerToString(c).c_str()));
   }
   //Check if simple Newick
-  if (Newick().IsSimple(Newick().StringToNewick(s)))
+  if (newick::IsSimple(newick::StringToNewick(s)))
   {
     ui->edit_text->appendPlainText("Simple Newick: Yes");
     const double theta = boost::lexical_cast<double>(
       std::string(ui->edit_theta->text().toStdString()));
-    const double p = Newick().CalcProbabilitySimpleNewick(Newick().StringToNewick(s),theta);
+    const double p = newick::CalcProbabilitySimpleNewick(newick::StringToNewick(s),theta);
     ui->edit_text->appendPlainText("Ewens probability: "
       + QString(boost::lexical_cast<std::string>(p).c_str()));
   }
@@ -164,7 +164,7 @@ void ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange()
     ui->edit_text->appendPlainText("Simple Newick: No");
   }
   //Check if binary Newick
-  if (Newick().IsBinaryNewick(Newick().StringToNewick(s)))
+  if (newick::IsBinaryNewick(newick::StringToNewick(s)))
   {
     ui->edit_text->appendPlainText("Binary Newick: Yes");
   }
@@ -172,7 +172,7 @@ void ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange()
   {
     ui->edit_text->appendPlainText("Binary Newick: No");
   }
-  if (Newick().IsTrinaryNewick(Newick().StringToNewick(s)))
+  if (newick::IsTrinaryNewick(newick::StringToNewick(s)))
   {
     ui->edit_text->appendPlainText("Trinary Newick: Yes");
   }
@@ -183,20 +183,20 @@ void ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange()
 
 
   //Check the simpler Newicks
-  if(!Newick().IsBinaryNewick(Newick().StringToNewick(s))) return;
-  assert(Newick().IsBinaryNewick(Newick().StringToNewick(s)));
-  if (Newick().IsBinaryNewick(Newick().StringToNewick(s)))
+  if(!newick::IsBinaryNewick(newick::StringToNewick(s))) return;
+  assert(newick::IsBinaryNewick(newick::StringToNewick(s)));
+  if (newick::IsBinaryNewick(newick::StringToNewick(s)))
   {
     const std::vector<std::vector<int> > simpler
-      = Newick().GetSimplerBinaryNewicks(Newick().StringToNewick(s));
+      = newick::GetSimplerBinaryNewicks(newick::StringToNewick(s));
     std::string text = "Simpler Newicks:\n";
     BOOST_FOREACH(const std::vector<int> simple,simpler)
     {
       try
       {
-        Newick().CheckNewick(simple);
+        newick::CheckNewick(simple);
         text+="  ";
-        text+=Newick().NewickToString(simple);
+        text+=newick::NewickToString(simple);
         text+='\n';
       }
       catch (std::exception& e)
@@ -210,19 +210,19 @@ void ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange()
     text.resize(text.size() - 1);
     ui->edit_text->appendPlainText(text.c_str());
   }
-  assert(Newick().IsBinaryNewick(Newick().StringToNewick(s)));
-  if (Newick().StringToNewick(s).size()>3
-    && Newick().IsBinaryNewick(Newick().StringToNewick(s)))
+  assert(newick::IsBinaryNewick(newick::StringToNewick(s)));
+  if (newick::StringToNewick(s).size()>3
+    && newick::IsBinaryNewick(newick::StringToNewick(s)))
   {
     std::string text = "(X,Y) =\n";
 
     const std::pair<std::vector<int>,std::vector<int> > b
-      = Newick().GetRootBranchesBinary(
-          Newick().StringToNewick(s));
+      = newick::GetRootBranchesBinary(
+          newick::StringToNewick(s));
     try
     {
-      Newick().CheckNewick(b.first);
-      text+="  " + Newick().NewickToString(b.first);
+      newick::CheckNewick(b.first);
+      text+="  " + newick::NewickToString(b.first);
     }
     catch (std::exception& e)
     {
@@ -231,8 +231,8 @@ void ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange()
     text+="\n";
     try
     {
-      Newick().CheckNewick(b.second);
-      text+="  " + Newick().NewickToString(b.second);
+      newick::CheckNewick(b.second);
+      text+="  " + newick::NewickToString(b.second);
     }
     catch (std::exception& e)
     {
@@ -259,13 +259,13 @@ void ribi::QtTestBinaryNewickVectorMainDialog::OnDemoTick()
   //Get any Newick
   if ((std::rand() >> 4) % 2)
   {
-    const std::vector<std::string> v = Newick().CreateValidNewicks();
+    const std::vector<std::string> v = newick::CreateValidNewicks();
     const std::string s = v[std::rand() % v.size()];
     ui->edit_newick->setText(QString(s.c_str()));
   }
   else
   {
-    const std::vector<std::string> v = Newick().CreateInvalidNewicks();
+    const std::vector<std::string> v = newick::CreateInvalidNewicks();
     const std::string s = v[std::rand() % v.size()];
     ui->edit_newick->setText(QString(s.c_str()));
   }
@@ -308,12 +308,12 @@ void ribi::QtTestBinaryNewickVectorMainDialog::on_button_calculate_clicked()
 {
   OnAnyChange();
   const std::string s = ui->edit_newick->text().toStdString();
-  if (!Newick().IsNewick(s))
+  if (!newick::IsNewick(s))
   {
     ui->edit_text->appendPlainText("NOT A VALID NEWICK");
     return;
   }
-  if (!Newick().IsBinaryNewick(Newick().StringToNewick(s)))
+  if (!newick::IsBinaryNewick(newick::StringToNewick(s)))
   {
     ui->edit_text->appendPlainText("NOT A VALID BINARY NEWICK");
     return;
@@ -333,7 +333,7 @@ void ribi::QtTestBinaryNewickVectorMainDialog::on_button_calculate_clicked()
   NewickStorage<SortedBinaryNewickVector> storage(newick);
 
   const double probability
-    = Newick().CalculateProbability(
+    = newick::CalculateProbability(
         newick,
         theta,
         storage);
