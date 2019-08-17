@@ -21,10 +21,7 @@ unix:!macx{
   message("Console application, built for Linux")
   message(Host name: $$QMAKE_HOST.name)
 
-  QMAKE_CXX = g++-5
-  QMAKE_LINK = g++-5
-  QMAKE_CC = gcc-5
-  QMAKE_CXXFLAGS += -Wall -Wextra -Weffc++ -Werror -std=c++14
+  QMAKE_CXXFLAGS += -Wall -Wextra -Werror
 
   # gcov
   QMAKE_CXXFLAGS += -fprofile-arcs -ftest-coverage
