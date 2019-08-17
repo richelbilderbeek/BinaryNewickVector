@@ -13,7 +13,7 @@ install:
   # OCLint
   - ./install_oclint.sh
   # Others
-  - ./download_other_githubs
+  - ./download_other_githubs.sh
   - ./install_other_githubs.sh
 
 services:
