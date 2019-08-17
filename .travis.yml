@@ -8,11 +8,12 @@ install:
   - sudo apt install -qq libboost-all-dev
   # Qt5
   - sudo apt-get install -qq qt5-qmake qt5-default
+  # Codecov
+  - sudo pip install codecov
   # OCLint
   - ./install_oclint.sh
-
-before_script: 
-  - ./download_other_githubs.sh
+  # Others
+  - ./download_other_githubs
   - ./install_other_githubs.sh
 
 services:
