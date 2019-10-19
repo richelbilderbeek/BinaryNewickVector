@@ -8,6 +8,8 @@ install:
   - sudo apt install -qq libboost-all-dev
   # Qt5
   - sudo apt-get install -qq qt5-qmake qt5-default
+  # Qwt
+  - sudo apt install -qq libqwt-qt5-dev
   # Codecov
   - sudo pip install codecov
   # OCLint
