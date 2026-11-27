@@ -1,13 +1,8 @@
 # BinaryNewickVector
 
+[![Codecov](https://codecov.io/gh/richelbilderbeek/BinaryNewickVector/branch/main/graph/badge.svg)](https://codecov.io/gh/richelbilderbeek/BinaryNewickVector)
+
 [Go to the nicely rendered website](https://richelbilderbeek.github.io/BinaryNewickVector/).
-
-[![Travis CI logo](TravisCI.png)](https://travis-ci.org)
-![Whitespace](Whitespace.png)
-[![Codecov logo](Codecov.png)](https://www.codecov.io)
-
-[![Build Status](https://travis-ci.org/richelbilderbeek/BinaryNewickVector.svg?branch=master)](https://travis-ci.org/richelbilderbeek/BinaryNewickVector)
-[![codecov.io](https://codecov.io/github/richelbilderbeek/BinaryNewickVector/coverage.svg?branch=master)](https://codecov.io/github/richelbilderbeek/BinaryNewickVector?branch=master)
 
 BinaryNewickVector class, including tests.
 

@@ -2,7 +2,7 @@
 site_name = "BinaryNewickVector"
 site_url = "https://richelbilderbeek.github.io/BinaryNewickVector/"
 repo_url = "https://github.com/richelbilderbeek/BinaryNewickVector"
-edit_uri = "blob/master/docs/"
+edit_uri = "blob/main/docs/"
 
 nav = [
   { "Start" = "README.md"}
